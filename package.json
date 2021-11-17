@@ -1,16 +1,16 @@
 {
-  "name": "py-lambda-circleci",
+  "name": "py-lambda-gh-actions",
   "version": "1.0.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nyoungstudios/py-lambda-circleci.git"
+    "url": "git+https://github.com/nyoungstudios/py-lambda-gh-actions.git"
   },
   "author": "Nathaniel Young",
   "bugs": {
-    "url": "https://github.com/nyoungstudios/py-lambda-circleci/issues"
+    "url": "https://github.com/nyoungstudios/py-lambda-gh-actions/issues"
   },
-  "homepage": "https://github.com/nyoungstudios/py-lambda-circleci#readme",
+  "homepage": "https://github.com/nyoungstudios/py-lambda-gh-actions#readme",
   "devDependencies": {
     "serverless-deployment-bucket": "^1.5.1",
     "serverless-layers": "^2.5.1"
