@@ -19,6 +19,7 @@ provider:
 
 package:
   patterns:
+  - '!.github/**'
   - '!requirements.txt'
   - '!README.md'
   - '!gh-actions-aws-iam.json'
