@@ -1,0 +1,49 @@
+# reference: https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml/
+
+service: py-lambda-circleci
+useDotenv: true
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: ${env:AWS_DEFAULT_REGION}
+  timeout: 45
+  logRetentionInDays: 90
+  deploymentBucket:
+    name: ${self:service}-${self:provider.stage}-serverlessdeploymentbucket
+  lambdaHashingVersion: 20201221
+
+
+package:
+  patterns:
+  - '!.circleci/**'
+  - '!requirements.txt'
+  - '!README.md'
+  - '!circleci-aws-iam.json'
+  - '!LICENSE'
+
+functions:
+  circle:
+    handler: src.handler.lambda_handler
+    description: AWS Lambda function to test CircleCI
+    maximumRetryAttempts: 0
+    events:
+      - schedule:
+          description: Calls AWS Lambda function every hour
+          rate: cron(0 */1 * * ? *)
+
+plugins:
+  - serverless-layers
+  - serverless-deployment-bucket
+custom:
+  serverless-layers:
+    dependenciesPath: ./requirements.txt
+    compatibleRuntimes:
+      - python3.8
+  deploymentBucket:
+    versioning: true
+    accelerate: true
+    blockPublicAccess: true
