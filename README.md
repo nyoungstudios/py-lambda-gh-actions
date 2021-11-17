@@ -1,6 +1,6 @@
-# Python AWS Lambda Serverless CircleCI Template
+# Python AWS Lambda Serverless GitHub Actions Template
 
-This is a simple template to setup a Python cron job as an AWS CloudFormation stack with a Lambda function and automatically deploy it using the Serverless framework on CircleCI.
+This is a simple template to setup a Python cron job as an AWS CloudFormation stack with a Lambda function and automatically deploy it using the Serverless framework with GitHub Actions. If you prefer to use CircleCI, check out this [template](https://github.com/nyoungstudios/py-lambda-circleci) instead. 
 
 ## Features
 
@@ -13,14 +13,11 @@ Additionally, I have setup a simple [Python function](src/logging_setup.py) so y
 ## How to Setup?
 
 1. Create a new repository based off of this template. Here is the GitHub [documentation](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template) about creating a repository from a template.
-2. Login to [CircleCI](https://app.circleci.com) and signin with your GitHub account.
-3. Click the `Projects` tab, and then click the blue `Set Up Project` button corresponding to the new repository you just created.
-4. In your AWS console, create a new [IAM policy](https://console.aws.amazon.com/iam/home?#/policies). If you are unsure what permissions to add to the policy, I've created a [minimal IAM policy](./circleci-aws-iam.json) with all the necessary permissions that CircleCI needs to deploy your CloudFormation stack. You can simply copy this to the AWS IAM policy JSON editor. Within the IAM policy JSON file, change `us-west-1` to whatever region you are using. Additionally change placeholder number `012345678901` to your AWS account number.
-5. Next, create a [AWS User](https://console.aws.amazon.com/iam/home?#/users) based off of this policy. Set the `Access type` to `Programmatic access`. And on the permissions page, select `Attach existing policies directly` and search for the policy you just created in step 4.
-6. Within the project on CircleCI, click the `Project Settings` button (on the top right side).
-7. Within the `Project Settings`, click on the tab `Environment Variables` and set the environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from the AWS User that you just created. Additionally, you can set the `AWS_DEFAULT_REGION` too.
-8. And that's it! Now, whenever you push to your GitHub repository, your code will automatically be deployed as a CloudFormation stack.
+2. In your AWS console, create a new [IAM policy](https://console.aws.amazon.com/iam/home?#/policies). If you are unsure what permissions to add to the policy, I've created a [minimal IAM policy](./gh-actions-aws-iam.json) with all the necessary permissions that GitHub Actions needs to deploy your CloudFormation stack. You can simply copy this to the AWS IAM policy JSON editor. Within the IAM policy JSON file, change `us-west-1` to whatever region you are using. Additionally change placeholder number `012345678901` to your AWS account number.
+3. Next, create a [AWS User](https://console.aws.amazon.com/iam/home?#/users) based off of this policy. Set the `Access type` to `Programmatic access`. And on the permissions page, select `Attach existing policies directly` and search for the policy you just created in step 4.
+4. Within the `Settings` tab on your GitHub repository, click on the `Secrets` tab and set the environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from the AWS User that you just created. Additionally, you can set the `AWS_DEFAULT_REGION` too.
+5. And that's it! Now, whenever you push to your GitHub repository, your code will automatically be deployed as a CloudFormation stack.
 
 ## Python Versions
 
-This template uses `Python 3.8`, but if you prefer to use a different Python version, just change `3.8` in [serverless.yml](./serverless.yml) and [config.yml](.circleci/config.yml) to whatever version you like. Here are the supported [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) Python runtimes. Also, here are the CircleCI Python [Docker images](https://circleci.com/developer/images/image/cimg/python) that you can for deploying.
+This template uses `Python 3.8`, but if you prefer to use a different Python version, just change `3.8` in [serverless.yml](./serverless.yml) and [deploy.yml](.github/workflows/deploy.yml) to whatever version you like. Here are the supported [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) Python runtimes. 

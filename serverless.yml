@@ -1,6 +1,6 @@
 # reference: https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml/
 
-service: py-lambda-circleci
+service: py-lambda-gh-actions
 useDotenv: true
 
 frameworkVersion: '2'
@@ -19,16 +19,15 @@ provider:
 
 package:
   patterns:
-  - '!.circleci/**'
   - '!requirements.txt'
   - '!README.md'
-  - '!circleci-aws-iam.json'
+  - '!gh-actions-aws-iam.json'
   - '!LICENSE'
 
 functions:
-  circle:
+  helloworld:
     handler: src.handler.lambda_handler
-    description: AWS Lambda function to test CircleCI
+    description: AWS Lambda function to test GitHub Actions
     maximumRetryAttempts: 0
     events:
       - schedule:
