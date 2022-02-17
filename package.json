@@ -13,6 +13,6 @@
   "homepage": "https://github.com/nyoungstudios/py-lambda-gh-actions#readme",
   "devDependencies": {
     "serverless-deployment-bucket": "^1.5.2",
-    "serverless-layers": "^2.5.1"
+    "serverless-layers": "^2.5.3"
   }
 }
