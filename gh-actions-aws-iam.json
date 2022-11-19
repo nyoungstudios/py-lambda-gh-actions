@@ -9,7 +9,10 @@
         "cloudformation:Get*",
         "cloudformation:CreateStack",
         "cloudformation:UpdateStack",
-        "cloudformation:DeleteStack"
+        "cloudformation:DeleteStack",
+        "cloudformation:CreateChangeSet",
+        "cloudformation:ExecuteChangeSet",
+        "cloudformation:DeleteChangeSet"
       ],
       "Resource": [
         "arn:aws:cloudformation:us-west-1:012345678901:stack/*/*"
@@ -125,6 +128,7 @@
         "lambda:PublishVersion",
         "lambda:PutFunctionEventInvokeConfig",
         "lambda:RemovePermission",
+        "lambda:TagResource",
         "lambda:UpdateAlias",
         "lambda:UpdateFunctionCode",
         "lambda:UpdateFunctionConfiguration"

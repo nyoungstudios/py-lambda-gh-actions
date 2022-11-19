@@ -3,7 +3,7 @@
 service: py-lambda-gh-actions
 useDotenv: true
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
@@ -14,7 +14,6 @@ provider:
   logRetentionInDays: 90
   deploymentBucket:
     name: ${self:service}-${self:provider.stage}-serverlessdeploymentbucket
-  lambdaHashingVersion: 20201221
 
 
 package:
